@@ -10,7 +10,7 @@ var assignmentSchema = new Schema({
   repeat: {type: Boolean},
   type: {
     type: String,
-    enum: ['reminder', 'survey'],
+    enum: ['reminder', 'survey', 'workout'],
     default: 'reminder'},
 
   days: [{type: Number, min: 0, max: 6}],

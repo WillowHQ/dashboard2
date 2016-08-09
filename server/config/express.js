@@ -81,6 +81,7 @@ module.exports = function() {
 	require('../routes/users.login.routes.js')(app, passport);
 	require('../routes/dashboard.route.js')(app, passport);
 	require('../routes/api/reminderRoute.js')(app, passport);
+	require('../routes/api/workoutRoute.js')(app, passport);
 	require('../routes/user.info.routes.js')(app, passport);
 	require('../routes/api/assignmentRoute.js')(app, passport);
   require('../routes/api/responseRoute.js')(app, passport);
@@ -92,6 +93,7 @@ module.exports = function() {
 	require('../routes/api/phoneRoute.js')(app, passport);
 	require('../routes/api/surveyTemplateRoute.js')(app, passport);
 	require('../routes/api/pipelineStageroute.js')(app, passport);
+
 
 	// Configure static file serving
   app.use(express.static(__dirname + '/../../app'));

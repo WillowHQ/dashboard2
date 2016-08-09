@@ -313,31 +313,32 @@ var app;
                   _this.selectedSurvey.daysOfTheWeek = {};
                   _this.selectedSurvey.selectedDays = surveyInfo.selectedDays;
                   _this.selectedSurvey.days = [];
-                  if (_this._.contains(_this.selectedSurvey.selectedDays, 'Sun')) {
+                  console.log(_this._);
+                  if (_this._.includes(_this.selectedSurvey.selectedDays, 'Sun')) {
                     _this.selectedSurvey.daysOfTheWeek.sunday = true;
                     _this.selectedSurvey.days.push(0);
                   }
-                  if (_this._.contains(_this.selectedSurvey.selectedDays, 'Mon')) {
+                  if (_this._.includes(_this.selectedSurvey.selectedDays, 'Mon')) {
                     _this.selectedSurvey.daysOfTheWeek.monday = true;
                     _this.selectedSurvey.days.push(1);
                   }
-                  if (_this._.contains(_this.selectedSurvey.selectedDays, 'Tues')) {
+                  if (_this._.includes(_this.selectedSurvey.selectedDays, 'Tues')) {
                     _this.selectedSurvey.daysOfTheWeek.tuesday = true;
                     _this.selectedSurvey.days.push(2);
                   }
-                  if (_this._.contains(_this.selectedSurvey.selectedDays, 'Wed')) {
+                  if (_this._.includes(_this.selectedSurvey.selectedDays, 'Wed')) {
                     _this.selectedSurvey.daysOfTheWeek.wednesday = true;
                     _this.selectedSurvey.days.push(3);
                   }
-                  if (_this._.contains(_this.selectedSurvey.selectedDays, 'Thurs')) {
+                  if (_this._.includes(_this.selectedSurvey.selectedDays, 'Thurs')) {
                     _this.selectedSurvey.daysOfTheWeek.thursday = true;
                     _this.selectedSurvey.days.push(4);
                   }
-                  if (_this._.contains(_this.selectedSurvey.selectedDays, 'Fri')) {
+                  if (_this._.includes(_this.selectedSurvey.selectedDays, 'Fri')) {
                     _this.selectedSurvey.daysOfTheWeek.friday = true;
                     _this.selectedSurvey.days.push(5);
                   }
-                  if (_this._.contains(_this.selectedSurvey.selectedDays, 'Sat')) {
+                  if (_this._.includes(_this.selectedSurvey.selectedDays, 'Sat')) {
                     _this.selectedSurvey.daysOfTheWeek.saturday = true;
                     _this.selectedSurvey.days.push(6);
                   }
@@ -776,88 +777,86 @@ var app;
             };
 
 
-            // MainController.prototype.addWorkout = function ($event) {
-            //     var _this = this;
-            //     var self = this;
-            //     var useFullScreen = (this.$mdMedia('sm') || this.$mdMedia('xs'));
-            //     console.log(_this.convoReminderResponse);
-            //     this.$mdDialog.show({
-            //         templateUrl: './dist/view/dashboard/workouts/modal.html',
-            //         parent: angular.element(document.body),
-            //         targetEvent: $event,
-            //         controller: dashboard.WorkoutController,
-            //         controllerAs: "ctrl",
-            //         clickOutsideToClose: true,
-            //         fullscreen: useFullScreen,
-            //         locals: {
-            //             selected: null
-            //         }
-            //     }).then(function (workout) {
-            //         console.log(workout);
-            //         First step, create the reminder and save it on the db
-            //         _this.$http.post('/api/workout/create', workout).then(function successCallback(response) {
-            //             // Add the reminder to the reminders array
-            //             console.log("creating assignment");
-            //             _this.reminders.push(response.data);
-            //             console.log(response.data);
-            //
-            //             // Convert the time for the reminder from the client's timezone into UTC
-            //             var clientTime = moment.tz({hour: workout.data.hour, minute: workout.data.minute}, self.selected.timezone);
-            //
-            //             // Get the server's timezone
-            //             var req = new XMLHttpRequest();
-            //             req.open('HEAD', document.location, false);
-            //             req.send(null);
-            //             var serverTimezone = req.getResponseHeader('x-server-timezone');
-            //
-            //             // Do the timezone conversion
-            //             var serverTime = clientTime.clone().tz(serverTimezone);
-            //
-            //             // Create the assignment object
-            //             var workoutUserAssign = {
-            //               repeat: true,
-            //               days: reminder.days,
-            //               hour: serverTime.hour(),
-            //               minute: serverTime.minute(),
-            //               userId: response.data.assignee,
-            //               reminderId: response.data._id,
-            //               type: 'workout' // Default is reminder but there's no harm in specifying it here
-            //             };
-            //             // Call sendOutReminder
-            //             _this.sendOutWorkout(workoutUserAssign);
-            //
-            //         });
-            //
-            //         self.openToast("Workout added");
-            //     }, function () {
-            //         console.log('You cancelled the dialog.');
-            //     });
-            // };
-            //
-            //
-            //
-            // MainController.prototype.sendOutWorkout = function (workoutUserAssign) {
-            //   var _this = this;
-            //   var self = this;
-            //   console.log('Inside sendOutWorkout');
-            //   console.log(workoutUserAssign);
-            //   this.$http.post('/api/assignment/create', workoutUserAssign).then(function (response) {
-            //     console.log('Frontend works' + JSON.stringify(response.data));
-            //
-            //     var rA = {
-            //       info: response.data,
-            //       res: []
-            //     }
-            //     console.log(_this.convoReminderResponse);
-            //     _this.convoReminderResponse.push(rA);
-            //     console.log(_this.convoReminderResponse);
-            //
-            //
-            //   });
-            // };
-            //
-            //
-            //
+            MainController.prototype.addWorkout = function ($event) {
+                var _this = this;
+                var self = this;
+                var useFullScreen = (this.$mdMedia('sm') || this.$mdMedia('xs'));
+                console.log(_this.convoReminderResponse);
+                this.$mdDialog.show({
+                    templateUrl: './dist/view/dashboard/workouts/modal.html',
+                    parent: angular.element(document.body),
+                    targetEvent: $event,
+                    controller: dashboard.WorkoutController,
+                    controllerAs: "ctrl",
+                    clickOutsideToClose: true,
+                    fullscreen: useFullScreen,
+                    locals: {
+                        selected: null
+                    }
+                }).then(function (workout) {
+                    console.log(workout);
+                    // <!-- First step, create the reminder and save it on the db -->
+                    //
+                    _this.$http.post('/api/workout/create', workout).then(function successCallback(response) {
+                        // Add the reminder to the reminders array
+                        console.log("creating assignment");
+                        _this.reminders.push(response.data);
+                        console.log(response.data);
+
+                        // Convert the time for the reminder from the client's timezone into UTC
+                        var clientTime = moment.tz({hour: workout.data.hour, minute: workout.data.minute}, self.selected.timezone);
+
+                        // Get the server's timezone
+                        var req = new XMLHttpRequest();
+                        req.open('HEAD', document.location, false);
+                        req.send(null);
+                        var serverTimezone = req.getResponseHeader('x-server-timezone');
+
+                        // Do the timezone conversion
+                        var serverTime = clientTime.clone().tz(serverTimezone);
+
+                        // Create the assignment object
+                        var workoutUserAssign = {
+                          repeat: true,
+                          days: reminder.days,
+                          hour: serverTime.hour(),
+                          minute: serverTime.minute(),
+                          userId: response.data.assignee,
+                          reminderId: response.data._id,
+                          type: 'workout' // Default is reminder but there's no harm in specifying it here
+                        };
+                        // Call sendOutReminder
+                        _this.sendOutWorkout(workoutUserAssign);
+
+                    });
+
+                    self.openToast("Workout added");
+                }, function () {
+                    console.log('You cancelled the dialog.');
+                });
+            };
+
+
+            MainController.prototype.sendOutWorkout = function (workoutUserAssign) {
+              var _this = this;
+              var self = this;
+              console.log('Inside sendOutWorkout');
+              console.log(workoutUserAssign);
+              this.$http.post('/api/assignment/create', workoutUserAssign).then(function (response) {
+                console.log('Frontend works' + JSON.stringify(response.data));
+
+                var rA = {
+                  info: response.data,
+                  res: []
+                }
+                console.log(_this.convoReminderResponse);
+                _this.convoReminderResponse.push(rA);
+                console.log(_this.convoReminderResponse);
+
+
+              });
+            };
+
 
 
 
